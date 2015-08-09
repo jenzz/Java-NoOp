@@ -6,7 +6,10 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.TypeMirror;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -43,6 +46,11 @@ class NoOpAnnotatedInterface {
         } else {
             return null;
         }
+    }
+
+    List<? extends TypeMirror> typeArguments() {
+        List<? extends TypeMirror> typeArguments = ((DeclaredType) interfaceElement.asType()).getTypeArguments();
+        return typeArguments != null ? typeArguments : Collections.<TypeMirror>emptyList();
     }
 
     List<ExecutableElement> methods() {
