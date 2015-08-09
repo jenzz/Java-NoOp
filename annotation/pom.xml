@@ -6,10 +6,11 @@
 
     <parent>
         <groupId>com.jenzz.noop</groupId>
-        <artifactId>noop</artifactId>
+        <artifactId>parent</artifactId>
         <version>1.0.0</version>
     </parent>
 
     <artifactId>annotation</artifactId>
-    <name>Java-NoOp annotation</name>
+    <name>Java-NoOp Annotation</name>
+    <packaging>jar</packaging>
 </project>

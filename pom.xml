@@ -4,14 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <groupId>com.jenzz.noop</groupId>
-    <artifactId>noop</artifactId>
+    <artifactId>parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>Java-NoOp</name>
     <description>Easy no-op Java interface implementations</description>
     <url>https://github.com/jenzz/Java-NoOp</url>
+
+    <modules>
+        <module>annotation</module>
+        <module>processor</module>
+        <module>sample</module>
+    </modules>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>http://github.com/jenzz/Java-NoOp/issues</url>
+    </issueManagement>
 
     <licenses>
         <license>
@@ -21,22 +38,67 @@
         </license>
     </licenses>
 
+    <scm>
+        <url>http://github.com/jenzz/Java-NoOp</url>
+        <connection>scm:git:git://github.com/jenzz/Java-NoOp.git</connection>
+        <developerConnection>scm:git:git@github.com:jenzz/Java-NoOp.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>jenzz</id>
+            <name>Jens Driller</name>
+            <email>jens@jensdriller.com</email>
+            <url>https://github.com/jenzz</url>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
     </properties>
 
-    <modules>
-        <module>annotation</module>
-        <module>processor</module>
-        <module>sample</module>
-    </modules>
-
     <build>
         <pluginManagement>
             <plugins>
-
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.1.2</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.8.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -47,28 +109,38 @@
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.3.2</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>2.1.2</version>
-                </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>bintray</id>
-            <url>https://api.bintray.com/maven/jenzz/maven/Java-NoOp</url>
-        </repository>
-    </distributionManagement>
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
