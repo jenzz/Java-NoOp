@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GenericInterfaceTest {
 
-    private final GenericInterface<String, Integer, Boolean> genericInterface = new NoOpGenericInterface<>();
+    private final GenericInterface<String, Integer, Exception> genericInterface = new NoOpGenericInterface<>();
 
     @Test
     public void testDefaultGenericValues() {

@@ -9,6 +9,7 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.type.TypeVariable;
 import java.util.List;
 
 import static com.jenzz.noop.processor.Utils.defaultValue;
@@ -47,11 +48,9 @@ class CodeGenerator {
 
     private void addGenerics(TypeSpec.Builder classBuilder) {
         List<? extends TypeMirror> typeMirrors = noOpAnnotatedInterface.typeArguments();
-        if (!typeMirrors.isEmpty()) {
-            for (TypeMirror typeMirror : typeMirrors) {
-                TypeVariableName typeVariableName = TypeVariableName.get(typeMirror.toString());
-                classBuilder.addTypeVariable(typeVariableName);
-            }
+        for (TypeMirror typeMirror : typeMirrors) {
+            TypeVariableName typeVariableName = TypeVariableName.get((TypeVariable) typeMirror);
+            classBuilder.addTypeVariable(typeVariableName);
         }
     }
 
