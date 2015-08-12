@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static javax.lang.model.element.Modifier.*;
+import static javax.lang.model.element.Modifier.PRIVATE;
+import static javax.lang.model.element.Modifier.PROTECTED;
+import static javax.lang.model.element.Modifier.PUBLIC;
 import static javax.lang.model.util.ElementFilter.methodsIn;
 
 class NoOpAnnotatedInterface {

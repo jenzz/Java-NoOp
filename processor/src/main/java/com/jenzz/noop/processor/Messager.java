@@ -3,7 +3,9 @@ package com.jenzz.noop.processor;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.Element;
 
-import static javax.tools.Diagnostic.Kind.*;
+import static javax.tools.Diagnostic.Kind.ERROR;
+import static javax.tools.Diagnostic.Kind.NOTE;
+import static javax.tools.Diagnostic.Kind.WARNING;
 
 class Messager {
 
