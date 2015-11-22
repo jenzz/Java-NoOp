@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.squareup</groupId>
             <artifactId>javapoet</artifactId>
-            <version>1.2.0</version>
+            <version>1.4.0</version>
         </dependency>
 
         <dependency>
