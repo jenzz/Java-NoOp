@@ -8,6 +8,8 @@ import javax.lang.model.type.TypeKind;
 import javax.lang.model.util.Elements;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Character.isUpperCase;
+import static java.lang.Character.toLowerCase;
 
 final class Utils {
 
@@ -44,5 +46,19 @@ final class Utils {
             default:
                 return "null";
         }
+    }
+
+    static String decapitalize(String name) {
+        if (name == null || name.length() == 0) {
+            return name;
+        }
+
+        if (name.length() > 1 && isUpperCase(name.charAt(0)) && isUpperCase(name.charAt(1))) {
+            return name;
+        }
+
+        char chars[] = name.toCharArray();
+        chars[0] = toLowerCase(chars[0]);
+        return new String(chars);
     }
 }
