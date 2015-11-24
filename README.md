@@ -42,6 +42,8 @@ public interface TestInterface {
 ```java
 public class NoOpTestInterface implements TestInterface {
 
+  public static final TestInterface INSTANCE = new NoOpTestInterface();
+
   @Override
   public byte aByte() {
     return (byte) 0;
@@ -90,6 +92,10 @@ public class NoOpTestInterface implements TestInterface {
   @Override
   public void aVoid() {
   }
+  
+  public static TestInterface noOpTestInterface() {
+      return INSTANCE;
+    }
 }
 ```
 
@@ -163,7 +169,7 @@ Download
 Gradle (using [apt](https://bitbucket.org/hvisser/android-apt)):
 
 ```groovy
-def noOpVersion = '1.1.0'
+def noOpVersion = '1.2.0'
 compile "com.jenzz.noop:annotation:$noOpVersion"
 apt "com.jenzz.noop:processor:$noOpVersion"
 ```
@@ -174,7 +180,7 @@ Maven (using [maven-compiler-plugin](http://maven.apache.org/plugins/maven-compi
 <dependency>
     <groupId>com.jenzz.noop</groupId>
     <artifactId>annotation</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 
 <build>
@@ -188,7 +194,7 @@ Maven (using [maven-compiler-plugin](http://maven.apache.org/plugins/maven-compi
                     <dependency>
                         <groupId>com.jenzz.noop</groupId>
                         <artifactId>processor</artifactId>
-                        <version>1.1.0</version>
+                        <version>1.2.0</version>
                     </dependency>
                 </dependencies>
             </plugin>

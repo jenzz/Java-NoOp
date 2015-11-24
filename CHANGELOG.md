@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.2.0 *(2015-11-24)*
+----------------------------
+
+* Add singleton INSTANCE field & method
+
 Version 1.1.0 *(2015-08-17)*
 ----------------------------
 
